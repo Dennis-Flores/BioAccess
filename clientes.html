@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso Clientes - BioAccess</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .clientes-container {
+      max-width: 800px;
+      margin: 120px auto 60px;
+      padding: 20px;
+      text-align: center;
+    }
+    .clientes-container h1 {
+      color: #34d1b6;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    .clientes-container h2 {
+      color: #ccc;
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+    .login-form {
+      background: #11151b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(52, 209, 182, 0.1);
+      text-align: left;
+    }
+    .login-form label {
+      display: block;
+      color: #ccc;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      background-color: #12181f;
+      color: white;
+      margin-bottom: 15px;
+      font-size: 15px;
+      box-shadow: 0 0 8px rgba(52, 209, 182, 0.05);
+    }
+    .login-form input:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(52, 209, 182, 0.3);
+    }
+    .login-form button {
+      width: 100%;
+      padding: 14px;
+      background-color: #34d1b6;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .login-form button:hover {
+      background-color: #2abfa4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo-nav">
+        <img src="solologo.png" alt="Logo BioAccess" />
+      </div>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li class="nav-cta"><a href="clientes.html" class="card-btn">Acceso Clientes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <div class="clientes-container">
+    <h1>Acceso Clientes</h1>
+
+    <!-- Establecimientos Educacionales -->
+<h2>Establecimientos Educacionales</h2>
+<form class="login-form" data-portal-tipo="educacional">
+  <label>Nombre Institución</label>
+  <input type="text"
+         name="organizacion"
+         placeholder="Ej: Liceo Ignacio Carrera Pinto"
+         list="lista-instituciones"
+         autocomplete="off"
+         data-autocomplete
+         data-type="instituciones"
+         data-target="lista-instituciones">
+  <datalist id="lista-instituciones"></datalist>
+
+  <label>Usuario</label>
+  <input type="text" name="usuario" placeholder="Usuario asignado" required>
+  <label>Contraseña</label>
+  <input type="password" name="password" placeholder="••••••••" required>
+
+  <div class="login-msg" style="margin:8px 0;color:#34d1b6;"></div>
+  <button type="submit">Ingresar</button>
+</form>
+
+<!-- Empresas y Comercios -->
+<h2>Empresas y Comercios</h2>
+<form class="login-form" data-portal-tipo="empresa">
+  <label>Nombre Empresa</label>
+  <input type="text"
+         name="organizacion"
+         placeholder="Ej: Prolube SpA"
+         list="lista-empresas"
+         autocomplete="off"
+         data-autocomplete
+         data-type="empresas"
+         data-target="lista-empresas">
+  <datalist id="lista-empresas"></datalist>
+
+  <label>Usuario</label>
+  <input type="text" name="usuario" placeholder="Usuario asignado" required>
+  <label>Contraseña</label>
+  <input type="password" name="password" placeholder="••••••••" required>
+
+  <div class="login-msg" style="margin:8px 0;color:#34d1b6;"></div>
+  <button type="submit">Ingresar</button>
+</form>
+
+
+<!-- Empresas y Comercios -->
+<h2>Empresas y Comercios</h2>
+<form class="login-form">
+  <label>Nombre Empresa</label>
+  <input type="text"
+         placeholder="Ej: Prolube SpA"
+         list="lista-empresas"
+         autocomplete="off"
+         data-autocomplete
+         data-type="empresas"
+         data-target="lista-empresas">
+  <datalist id="lista-empresas"></datalist>
+
+  <label>Usuario</label>
+  <input type="text" placeholder="Usuario asignado" required>
+  <label>Contraseña</label>
+  <input type="password" placeholder="••••••••" required>
+  <button type="submit">Ingresar</button>
+</form>
+
+  </div>
+<script>
+  // DEMO local (sustituir por fetch a tu API cuando esté lista)
+  const FUENTES_DEMO = {
+    instituciones: [
+      "Liceo Ignacio Carrera Pinto",
+      "Escuela República de Chile",
+      "Colegio San Martín",
+      "Instituto Comercial Puerto Montt",
+      "Universidad de Los Lagos",
+      "CFT Estatal Los Lagos",
+      "Escuela Rural Pichiquillaipe"
+    ],
+    empresas: [
+      "Prolube SpA",
+      "Servicios Austral SpA",
+      "Comercial Los Lagos Ltda.",
+      "Transportes del Sur",
+      "Mantenciones Patagónicas",
+      "Seguridad Andina"
+    ]
+  };
+
+  // Endpoints sugeridos (cuando subamos la BD)
+  const ENDPOINTS = {
+    instituciones: "/api/instituciones.php?q=",
+    empresas: "/api/empresas.php?q="
+  };
+
+  const debounce = (fn, ms = 250) => {
+    let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+  };
+
+  async function buscar(type, query) {
+    // 🔁 Cuando tengas la API, descomenta esta parte y comenta el bloque DEMO
+    /*
+    try {
+      const r = await fetch(ENDPOINTS[type] + encodeURIComponent(query));
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const data = await r.json(); // debe ser: ["Nombre A", "Nombre B", ...]
+      return data.slice(0, 20);
+    } catch (e) {
+      console.error("Error consultando " + type, e);
+      return [];
+    }
+    */
+
+    // DEMO local (estático)
+    return (FUENTES_DEMO[type] || [])
+      .filter(n => n.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 20);
+  }
+
+  function renderOptions(datalistEl, nombres) {
+    datalistEl.innerHTML = "";
+    for (const nombre of nombres) {
+      const opt = document.createElement("option");
+      opt.value = nombre;
+      datalistEl.appendChild(opt);
+    }
+  }
+
+  const onAutoInput = debounce(async ev => {
+    const q = ev.target.value.trim();
+    const type = ev.target.getAttribute("data-type");
+    const targetId = ev.target.getAttribute("data-target");
+    const datalistEl = document.getElementById(targetId);
+
+    if (!q) { datalistEl.innerHTML = ""; return; }
+
+    const resultados = await buscar(type, q);
+    renderOptions(datalistEl, resultados);
+  }, 250);
+
+  document.querySelectorAll("[data-autocomplete]").forEach(inp => {
+    inp.addEventListener("input", onAutoInput);
+  });
+</script>
+
+<script>
+async function enviarLogin(form) {
+  const tipo  = form.dataset.portalTipo; // "educacional" | "empresa"
+  const org   = form.organizacion.value.trim();
+  const user  = form.usuario.value.trim();
+  const pass  = form.password.value;
+  const msgEl = form.querySelector('.login-msg');
+
+  if(!org || !user || !pass){ msgEl.textContent='Completa todos los campos.'; return; }
+  msgEl.textContent = 'Verificando...';
+
+  const body = new URLSearchParams({ tipo, organizacion: org, usuario: user, password: pass });
+
+  try {
+    const r = await fetch('/api/login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body
+    });
+    const data = await r.json();
+    if (data.ok) {
+      location.href = data.redirect || '/clientes_panel.php';
+    } else {
+      msgEl.textContent = data.msg || 'Credenciales inválidas.';
+    }
+  } catch (e) {
+    msgEl.textContent = 'Error de conexión.';
+  }
+}
+
+document.querySelectorAll('form.login-form').forEach(f=>{
+  f.addEventListener('submit', e => { e.preventDefault(); enviarLogin(f); });
+});
+</script>
+
+
+</body>
+</html>
